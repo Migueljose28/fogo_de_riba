@@ -6,6 +6,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from PyQt5.QtWidgets import QLineEdit, QMessageBox
 
+import sqlite3 as db
+
 
 
 class Ui_MainWindow(object):
@@ -216,6 +218,22 @@ class Ui_MainWindow(object):
 
     def transparencia4(self):
         self.widget_cadastro_usuarios.setVisible(True)
+
+    def criardb():
+        con = db.connect("usuarios.db")
+        cursor = con.cursor()
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        email TEXT NOT NULL,
+        telefone TEXT NOT NULL,
+        senha TEXT NOT NULL     
+       
+    )
+        ''')
+
+    criardb()
 
 if __name__ == "__main__":
     import sys
