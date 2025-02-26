@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.pushButton_sobre.setGeometry(QtCore.QRect(10, 440, 101, 41))
         self.pushButton_sobre.setStyleSheet("background-color: rgb(255, 255, 255);")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("telaPrincipal/Imagens/aboutIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon.addPixmap(QtGui.QPixmap("Telas/Imagens/aboutIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.pushButton_sobre.setIcon(icon)
         self.pushButton_sobre.setIconSize(QtCore.QSize(30, 30))
         self.pushButton_sobre.setObjectName("pushButton_sobre")
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(255, 255, 255);\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("telaPrincipal/Imagens/cardapio2Icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon1.addPixmap(QtGui.QPixmap("Telas/Imagens/cardapio2Icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.pushButton_cardapio.setIcon(icon1)
         self.pushButton_cardapio.setIconSize(QtCore.QSize(40, 40))
         self.pushButton_cardapio.setObjectName("pushButton_cardapio")
@@ -39,7 +39,7 @@ class Ui_MainWindow(object):
         self.pushButton_fechar.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";\n"
 "background-color: rgb(255, 255, 255);")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("telaPrincipal/Imagens/leaveIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon2.addPixmap(QtGui.QPixmap("Telas/Imagens/leaveIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.pushButton_fechar.setIcon(icon2)
         self.pushButton_fechar.setIconSize(QtCore.QSize(25, 25))
         self.pushButton_fechar.setObjectName("pushButton_fechar")
@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.pushButton_pedidos.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";\n"
 "background-color: rgb(255, 255, 255);")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("telaPrincipal/Imagens/cardapioIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon3.addPixmap(QtGui.QPixmap("Telas/Imagens/cardapioIcon.jfif"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.pushButton_pedidos.setIcon(icon3)
         self.pushButton_pedidos.setIconSize(QtCore.QSize(35, 35))
         self.pushButton_pedidos.setObjectName("pushButton_pedidos")
@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.pushButton_cardapio.setText(_translate("MainWindow", "  ACESSE NOSSO CARDÁPIO"))
         self.pushButton_fechar.setText(_translate("MainWindow", " SAIR"))
         self.pushButton_pedidos.setText(_translate("MainWindow", "  FAÇA JÁ O SEU PEDIDO!"))
-        self.label_fundo1.setText(_translate("MainWindow", "<html><head/><body><p><img src=\"telaPrincipal/Imagens/gaviao.jpg\"/></p></body></html>"))
+        self.label_fundo1.setText(_translate("MainWindow", "<html><head/><body><p><img src=\"Telas/Imagens/gaviao.jpg\"/></p></body></html>"))
         self.label_fundo2.setText(_translate("MainWindow", "TextLabel"))
         self.label_fraseWow.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; color:#ffffff;\">Fogo de riba no fogão,<br/>calor no coração!</span></p></body></html>"))
 
