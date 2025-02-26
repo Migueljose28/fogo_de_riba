@@ -167,7 +167,7 @@ class Ui_MainWindow(object):
         self.label_imagem_fixa.setGeometry(QtCore.QRect(40, 100, 301, 281))
         self.label_imagem_fixa.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_imagem_fixa.setText("")
-        self.label_imagem_fixa.setPixmap(QtGui.QPixmap(".\\xilo_fixa.jpg"))
+        self.label_imagem_fixa.setPixmap(QtGui.QPixmap("login_cadastro/xilo_fixa.jpg"))
         self.label_imagem_fixa.setScaledContents(True)
         self.label_imagem_fixa.setObjectName("label_imagem_fixa")
         self.label_descricao_fixa = QtWidgets.QLabel(self.centralwidget)
