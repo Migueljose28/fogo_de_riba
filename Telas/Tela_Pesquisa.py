@@ -18,6 +18,10 @@ class Ui_MainWindow(object):
         self.frame.setObjectName("frame")
         self.pushButton_pesquisar = QtWidgets.QPushButton(self.frame)
         self.pushButton_pesquisar.setGeometry(QtCore.QRect(380, 40, 80, 23))
+        #entrar na função para pesquisar
+        #self.pushButton_pesquisar.clicked.connect(self.pesquisar_ingrediente)
+
+
         self.pushButton_pesquisar.setStyleSheet("color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);")
         self.pushButton_pesquisar.setObjectName("pushButton_pesquisar")
@@ -39,6 +43,8 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);")
         self.plainTextEdit_exibirCardapio.setPlainText("")
         self.plainTextEdit_exibirCardapio.setObjectName("plainTextEdit_exibirCardapio")
+        
+
         self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setGeometry(QtCore.QRect(10, 40, 201, 22))
         self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -90,6 +96,9 @@ class Ui_MainWindow(object):
         self.pushButton_cardapiocompleto.setStyleSheet("background-color: rgb(0, 0, 0);\n"
 "color: rgb(255, 255, 255);")
         self.pushButton_cardapiocompleto.setObjectName("pushButton_cardapiocompleto")
+        #entrar na função para mostrar cardapio
+        self.pushButton_cardapiocompleto.clicked.connect(self.mostrar_cardapio)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -121,36 +130,68 @@ class Ui_MainWindow(object):
 
     
 
-def criar_banco():
-    conn = db.connect("cardapio.db")
-    cursor = conn.cursor()
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS pratos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL,
-        descrição TEXT NOT NULL     
-       
-    )
-        ''')
+    def criar_banco(self):
+        conn = db.connect("cardapio.db")
+        cursor = conn.cursor()
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS pratos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                descrição TEXT NOT NULL     
+        )
+                ''')
+        
+        # Salvar as alterações e fechar a conexão
+        conn.commit()
+        conn.close()
 
-# Salvar as alterações e fechar a conexão
-    conn.commit()
-    conn.close()
-
-def inserir_prato():
-    conn = db.connect("cardapio.db")
-    cursor = conn.cursor()
-    cmd =('''INSERT INTO pratos VALUES (null,?,?)''')
-    cursor.execute(cmd, ("Baião de dois"))
-    conn.commit()
-    conn.close()
+    def inserir_prato(self):
+        conn = db.connect("cardapio.db")
+        cursor = conn.cursor()
+        #cursor.execute('''INSERT INTO pratos VALUES (null, "prato tropical", "cuscuz com leite")''')
+        conn.commit()
+        conn.close()
 
 
+    def mostrar_cardapio(self):
+        conn = db.connect("cardapio.db")
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM pratos''').fetchone
+        
+        if cursor.rowcount == 0:
+                self.plainTextEdit_exibirCardapio.setPlainText("NENHUM RESULTADO ENCONTRADO.")
+        else:
+                dados = cursor.fetchall()
+                
+                texto = ""
+                
+                for linha in dados:
+                        texto += "Prato: " + str(linha[0]) + "\n"
+                        texto += "Nome: "   + linha[1] + "\n"
+                        texto += "descrição: "  + linha[2] + "\n"
+                        texto += "------------------------------\n"
+                        
+                texto += str(cursor.rowcount) + " resultados encontrados."
+                
+                self.plainTextEdit_exibirCardapio.setPlainText(texto)
+                
+                
+    def pesquisar_ingrediente(self):
+         conn = db.connect("cardapio.db")
+         cursor = conn.cursor()
+         descrição = self.lineEdit.text()
+
+         cursor.execute(''' 
+                SELECT * FROM pratos where nome LIKE ?
+                ''', {'%'+descrição+'%'})
+         
+         conn.commit()
+         conn.close()
+
+    
 
 if __name__ == "__main__":
     import sys
-    criar_banco()
-    inserir_prato()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
