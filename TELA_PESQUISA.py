@@ -141,7 +141,7 @@ def inserir_prato():
     conn = db.connect("cardapio.db")
     cursor = conn.cursor()
     cmd =('''INSERT INTO pratos VALUES (null,?,?)''')
-    cursor.execute(cmd, ("Baião de dois, Feijão, arroz, queijo e coco"))
+    cursor.execute(cmd, ("Baião de dois"))
     conn.commit()
     conn.close()
 
