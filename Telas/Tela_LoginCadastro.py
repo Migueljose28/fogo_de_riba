@@ -80,6 +80,10 @@ class Ui_MainWindow(object):
 "")
         self.label_cadastro_titulo_cad_clientes.setObjectName("label_cadastro_titulo_cad_clientes")
         self.pushButton_cadastro_cadastrar = QtWidgets.QPushButton(self.widget_cadastro_usuarios)
+
+
+        self.pushButton_cadastro_cadastrar.clicked.connect(self.cad_usuarios)
+
         self.pushButton_cadastro_cadastrar.setGeometry(QtCore.QRect(144, 460, 111, 41))
         self.pushButton_cadastro_cadastrar.setStyleSheet("border-radius: 5px;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -234,14 +238,39 @@ class Ui_MainWindow(object):
         ''')
 
     def cad_usuarios(self):
+        con = db.connect("usuarios.db")
+        cursor = con.cursor()
         nome = self.lineEdit_cadastro_usuario.text()
         email = self.lineEdit_cadastro_email.text()
         telefone = self.lineEdit_cadastro_telefone.text()
         senha = self.lineEdit_cadastro_senha.text()
 
-        cmd = "INSERT INTO alunos values (null, %s,%s,%s,%s)"
-        cursor.execute(cmd, (nome,email,telefone,senha))
-        conexao.commit()
+        if nome == "" or email == "" or telefone == "" or senha == "":
+            msg = QMessageBox()
+            msg.setWindowTitle("Aviso")
+            msg.setText("O CADASTRO POSSUI CAMPO(S) VAZIO(S)!")
+            msg.exec_()
+
+        else:
+            cmd = "INSERT INTO usuarios values (null, ?, ?, ?, ?)"
+            cursor.execute(cmd, (nome,email,telefone,senha))
+            con.commit()
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Aviso")
+            msg.setText("CADASTRADO COM SUCESSO!")
+            msg.exec_()
+
+            self.limpar()
+            cursor.close()
+            con.close()
+
+
+    def limpar(self):
+        self.lineEdit_cadastro_usuario.setText("")
+        self.lineEdit_cadastro_email.setText("")
+        self.self.lineEdit_cadastro_telefone.setText("")
+        self.lineEdit_cadastro_senha.setText("")
 
     criardb()
 
