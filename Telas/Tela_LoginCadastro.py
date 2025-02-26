@@ -233,6 +233,16 @@ class Ui_MainWindow(object):
     )
         ''')
 
+    def cad_usuarios(self):
+        nome = self.lineEdit_cadastro_usuario.text()
+        email = self.lineEdit_cadastro_email.text()
+        telefone = self.lineEdit_cadastro_telefone.text()
+        senha = self.lineEdit_cadastro_senha.text()
+
+        cmd = "INSERT INTO alunos values (null, %s,%s,%s,%s)"
+        cursor.execute(cmd, (nome,email,telefone,senha))
+        conexao.commit()
+
     criardb()
 
 if __name__ == "__main__":
