@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="Imagens">
+    <file>aboutIcon.jfif</file>
+    <file>cardapioIcon.jfif</file>
+    <file>gaviao.jpg</file>
+    <file>cardapio2Icon.png</file>
+    <file>leaveIcon.jfif</file>
+  </qresource>
+</RCC>
