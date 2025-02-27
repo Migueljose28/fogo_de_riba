@@ -3,8 +3,9 @@
 # Arquivo convertido em ui2py.vercel.app
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Tela_Pesquisa import Ui_TelaPesquisa
 
-class Ui_MainWindow(object):
+class Ui_TelaPrincipal(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 490)
@@ -77,7 +78,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Tela Principal"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "FOGO DE RIBA - TELA PRINCIPAL"))
         self.label_nomeRestaurante.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt; font-weight:600; color:#000000;\">Restaurante Fogo de Riba</span></p></body></html>"))
         self.pushButton_sobre.setText(_translate("MainWindow", "SOBRE NÓS"))
         self.pushButton_cardapio.setText(_translate("MainWindow", "  ACESSE NOSSO CARDÁPIO"))
@@ -91,8 +92,8 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    TelaPrincipal = QtWidgets.QMainWindow()
+    ui = Ui_TelaPrincipal()
+    ui.setupUi(TelaPrincipal)
+    TelaPrincipal.show()
     sys.exit(app.exec_())

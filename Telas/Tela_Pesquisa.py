@@ -5,7 +5,7 @@ import sqlite3 as db
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_TelaPesquisa(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(773, 523)
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(30, 110, 251, 231))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("./Downloads/riba.jpeg"))
+        self.label.setPixmap(QtGui.QPixmap("Telas/Imagens/xilo_fixa.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.groupBox)
@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "FOGO A RIBA - PESQUISA"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "FOGO DE RIBA - PESQUISA"))
         self.pushButton_pesquisar.setText(_translate("MainWindow", "Pesquisar"))
         self.comboBox_filtrar.setItemText(0, _translate("MainWindow", "Filtrar"))
         self.comboBox_filtrar.setItemText(1, _translate("MainWindow", "Pratos Típicos"))
@@ -194,7 +194,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_TelaPesquisa()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

@@ -10,7 +10,7 @@ import sqlite3 as db
 
 
 
-class Ui_MainWindow(object):
+class Ui_TelaLoginCadastro(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(802, 602)
@@ -192,7 +192,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Acesso ao Sistema"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "FOGO DE RIBA - ACESSO"))
         self.label_cadastro_usuario.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#ffffff;\">Arretado:</span></p></body></html>"))
         self.label_cadastro_email.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#ffffff;\">E-mail:</span></p></body></html>"))
         self.label_cadastro_telefone.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; font-style:italic; color:#ffffff;\">Telefone:</span></p></body></html>"))
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_TelaLoginCadastro()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
