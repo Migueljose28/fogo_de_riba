@@ -3,6 +3,7 @@
 # Arquivo convertido em ui2py.vercel.app
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QLineEdit, QMessageBox
 import sqlite3 as db
 
 
@@ -44,7 +45,12 @@ class Ui_TelaPedidos(object):
         self.comboBox_pedido.setGeometry(QtCore.QRect(260, 230, 141, 20))
         self.comboBox_pedido.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox_pedido.setObjectName("comboBox_pedido")
+
         self.comboBox_pedido.addItem("")
+        self.comboBox_pedido.addItem("nome1")
+        self.comboBox_pedido.addItem("nome2")
+        self.comboBox_pedido.addItem("nome3")
+
         self.label_pedidos = QtWidgets.QLabel(self.centralwidget)
         self.label_pedidos.setGeometry(QtCore.QRect(170, 275, 231, 31))
         self.label_pedidos.setStyleSheet("color: rgb(0, 0, 0);\n"
@@ -74,7 +80,10 @@ class Ui_TelaPedidos(object):
 "border-radius: 10px;\n"
 "")
         self.pushButton_finalizarPedido.setObjectName("pushButton_finalizarPedido")
+
+        self.pushButton_finalizarPedido.clicked.connect(self.realizarPedido)
         self.pushButton_limparCarrinho = QtWidgets.QPushButton(self.centralwidget)
+
         self.pushButton_limparCarrinho.setGeometry(QtCore.QRect(470, 395, 201, 31))
         self.pushButton_limparCarrinho.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -82,10 +91,15 @@ class Ui_TelaPedidos(object):
 "border-radius: 10px;\n"
 "")
         self.pushButton_limparCarrinho.setObjectName("pushButton_limparCarrinho")
+
+        self.pushButton_limparCarrinho.clicked.connect(self.limparCampos)
+
         self.spinBox_quantidade = QtWidgets.QSpinBox(self.centralwidget)
         self.spinBox_quantidade.setGeometry(QtCore.QRect(580, 230, 133, 20))
         self.spinBox_quantidade.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.spinBox_quantidade.setObjectName("spinBox_quantidade")
+        self.spinBox_quantidade.setRange(1,10) #Define o range do botão de quantidade
+
         self.label_quantidade = QtWidgets.QLabel(self.centralwidget)
         self.label_quantidade.setGeometry(QtCore.QRect(430, 225, 141, 31))
         self.label_quantidade.setStyleSheet("color: rgb(0, 0, 0);\n"
@@ -118,6 +132,8 @@ class Ui_TelaPedidos(object):
 "border-radius: 10px;\n"
 "")
         self.pushButton_voltar.setObjectName("pushButton_voltar")
+
+
         self.label_wallpaper.raise_()
         self.label_titulo.raise_()
         self.label_nome.raise_()
@@ -160,55 +176,75 @@ class Ui_TelaPedidos(object):
         self.label_wallpaper.setText(_translate("MainWindow", "<html><head/><body><p><img src=\"Telas/Imagens/fundoPedidos.jpg\"/></p></body></html>"))
         self.pushButton_voltar.setText(_translate("MainWindow", "voltar"))
 
-    #def criardb(): #Para criar a tabela no banco de dados
-        #con = db.connect("cardapio.db")
-        #cursor = con.cursor()
-        #cursor.execute('''
-        #CREATE TABLE IF NOT EXISTS pedidos (
-        #id INTEGER PRIMARY KEY AUTOINCREMENT,
-        #cliente TEXT NOT NULL,
-        #telefone TEXT NOT NULL,
-        #produtos TEXT NOT NULL,
-        #valor INTEGER
-        #)
-        #''')
+    def criardb(): #Para criar a tabela no banco de dados
+        con = db.connect("cardapio.db")
+        cursor = con.cursor()
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS pedidos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        cliente TEXT NOT NULL,
+        telefone TEXT NOT NULL,
+        produtos TEXT NOT NULL,
+        valor INTEGER
+        )
+        ''')
 
-    def funcionamentoPedidos(self):
-        #con = db.connect("cardapio.db")
-        #cursor = con.cursor()
+    def realizarPedido(self):
+        con = db.connect("cardapio.db")
+        cursor = con.cursor()
+
         nome = self.lineEdit_cliente.text().strip().lower()
         telefone = self.lineEdit.text().strip().lower()
         produto = self.comboBox_pedido.currentText()
         quantidade = self.spinBox_quantidade.value()
 
-        Pedido = [produto, quantidade]
-        PedidosList = []
-        ValorFinal = 0
-        Produtos = []
+        if nome == "" or telefone == "":
+            msg = QMessageBox()
+            msg.setIcon(msg.Warning)
+            msg.setWindowTitle("Aviso")
+            msg.setText("INFORME SUAS INFORMAÇÕES PESSOAIS!")
+            msg.exec_()
 
-        if self.pushButton_addCarrinho.clicked.connect():
-            PedidosList.append(Pedido)
+        else:
+            valor = 0
 
-            for pedido in PedidosList:
-                Produtos.extend[pedido[0]]
-                if pedido[0] == "nome1":
-                    ValorUnitario = 1
-                elif pedido[0] == "nome2":
-                    ValorUnitario = 2
-                elif pedido[0] == "nome3":
-                    ValorUnitario = 3
-                ValorUnitario = ValorUnitario * pedido[1]
-                ValorFinal += ValorUnitario
+            if produto == "Nenhum":
+                msg = QMessageBox()
+                msg.setIcon(msg.Warning)
+                msg.setWindowTitle("Aviso")
+                msg.setText("SELECIONE ALGUM PRODUTO!")
+                msg.exec_()
+            elif produto == "nome1":
+                valor = 1 * quantidade
+            elif produto == "nome2":
+                valor = 2 * quantidade
+            elif produto == "nome3":
+                valor = 3 * quantidade
+            elif produto == "nome4":
+                valor = 4 * quantidade
+        
 
-        elif self.pushButton_finalizarPedido.clicked.connect():
-            con = db.connect("cardapio.db")
-            cursor = con.cursor()
-            cursor.execute("INSERT INTO pedidos VALUES (null, %s, %s, %s, %s)",(nome, telefone, Produtos, ValorFinal))
+            if valor != 0:
+                cursor.execute("INSERT INTO pedidos VALUES (null, ?, ?, ?, ?)",(nome, telefone, produto, valor))
+                con.commit()
+                msg = QMessageBox()
+                msg.setIcon(msg.Information)
+                msg.setWindowTitle("Aviso")
+                msg.setText("PEDIDO REALIZADO COM SUCESSO!")
+                msg.exec_()
 
-        elif self.pushButton_limparCarrinho.clicked.connect():
-            ValorFinal = 0
-            PedidosList = []
-            Produtos = []
+                self.lineEdit_cliente.setText("")
+                self.lineEdit.setText("")
+                self.comboBox_pedido.setCurrentIndex(0)
+                self.spinBox_quantidade.setValue(1)
+     
+    def limparCampos(self):
+        self.lineEdit_cliente.setText("")
+        self.lineEdit.setText("")
+        self.comboBox_pedido.setCurrentIndex(0)
+        self.spinBox_quantidade.setValue(1)
+
+    criardb()
 
 if __name__ == "__main__":
     import sys
