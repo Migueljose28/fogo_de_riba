@@ -9,8 +9,6 @@ class Ui_TelaPrincipal(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 490)
-        MainWindow.setMinimumSize(QtCore.QSize(1000, 490))
-        MainWindow.setMaximumSize(QtCore.QSize(1000, 490))
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")

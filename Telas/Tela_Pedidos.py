@@ -10,8 +10,6 @@ class Ui_TelaPedidos(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(790, 500)
-        MainWindow.setMinimumSize(QtCore.QSize(790, 500))
-        MainWindow.setMaximumSize(QtCore.QSize(790, 500))
         MainWindow.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
