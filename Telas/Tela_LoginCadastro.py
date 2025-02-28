@@ -6,6 +6,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from PyQt5.QtWidgets import QLineEdit, QMessageBox
 
+from Tela_Principal import Ui_TelaPrincipal
+
 import sqlite3 as db
 
 
@@ -148,6 +150,10 @@ class Ui_TelaLoginCadastro(object):
 "padding: 5px;")
         self.lineEdit_login_senha.setObjectName("lineEdit_login_senha")
         self.pushButton_login_logar = QtWidgets.QPushButton(self.widget_login)
+
+        self.pushButton_login_logar.clicked.connect(self.logar)
+
+
         self.pushButton_login_logar.setGeometry(QtCore.QRect(150, 360, 111, 41))
         self.pushButton_login_logar.setStyleSheet("border-radius: 5px;\n"
 "background-color: rgb(255, 255, 255);\n"
