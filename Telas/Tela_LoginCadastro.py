@@ -246,10 +246,14 @@ class Ui_TelaLoginCadastro(object):
     def cad_usuarios(self):
         con = db.connect("usuarios.db")
         cursor = con.cursor()
+
         nome = self.lineEdit_cadastro_usuario.text().strip().lower()
         email = self.lineEdit_cadastro_email.text().strip().lower()
         telefone = self.lineEdit_cadastro_telefone.text().strip().lower()
         senha = self.lineEdit_cadastro_senha.text().strip().lower()
+
+        cursor.execute("SELECT * FROM usuarios WHERE nome = ? AND email = ? AND telefone = ? AND senha = ?", (nome, email, telefone, senha))
+        quant = cursor.fetchone()
 
         if nome == "" or email == "" or telefone == "" or senha == "":
             msg = QMessageBox()
@@ -257,6 +261,15 @@ class Ui_TelaLoginCadastro(object):
             msg.setWindowTitle("Aviso")
             msg.setText("TODOS OS CAMPOS SÃO OBRIGATÓRIOS!")
             msg.exec_()
+
+
+        elif quant is not None:
+            msg = QMessageBox()
+            msg.setIcon(msg.Warning)
+            msg.setWindowTitle("Aviso")
+            msg.setText("ESSE USUÁRIO JÁ ESTÁ CADASTRADO!")
+            msg.exec_()
+
 
         else:
             cmd = "INSERT INTO usuarios values (null, ?, ?, ?, ?)"
@@ -269,16 +282,12 @@ class Ui_TelaLoginCadastro(object):
             msg.setText("CADASTRO REALIZADO COM SUCESSO!")
             msg.exec_()
 
-            self.limpar()
+            self.lineEdit_cadastro_usuario.setText("")
+            self.lineEdit_cadastro_email.setText("")
+            self.lineEdit_cadastro_telefone.setText("")
+            self.lineEdit_cadastro_senha.setText("")
             cursor.close()
             con.close()
-
-
-    def limpar(self):
-        self.lineEdit_cadastro_usuario.setText("")
-        self.lineEdit_cadastro_email.setText("")
-        self.self.lineEdit_cadastro_telefone.setText("")
-        self.lineEdit_cadastro_senha.setText("")
 
 
 
