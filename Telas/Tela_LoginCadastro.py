@@ -151,7 +151,7 @@ class Ui_TelaLoginCadastro(object):
         self.lineEdit_login_senha.setObjectName("lineEdit_login_senha")
         self.pushButton_login_logar = QtWidgets.QPushButton(self.widget_login)
 
-        self.pushButton_login_logar.clicked.connect(self.logar)
+       
 
 
         self.pushButton_login_logar.setGeometry(QtCore.QRect(150, 360, 111, 41))
@@ -314,11 +314,7 @@ class Ui_TelaLoginCadastro(object):
                 msg.setText("Usuário ou senha inválida!")
                 msg.exec()
             else:
-                TelaLoginCadastro.hide()
-                self.janela = QtWidgets.QMainWindow()
-                self.calc = Ui_TelaPrincipal()
-                self.calc.setupUi(self.janela)
-                self.janela.show()
+                return True
 
 
 
