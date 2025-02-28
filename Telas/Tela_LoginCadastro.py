@@ -296,8 +296,9 @@ class Ui_TelaLoginCadastro(object):
         else:
             con = db.connect("usuarios.db")
             cursor = con.cursor()
-            cursor.execute(f"SELECT * FROM usuarios WHERE nome = '{usuario}' and senha = '{senha}'")
-            if cursor.rowcount == 0:
+            cursor.execute("SELECT * FROM usuarios WHERE nome = ? AND senha = ?", (usuario, senha))
+            quant = cursor.fetchone()
+            if quant is None:
                 msg = QMessageBox()
                 msg.setWindowTitle("Erro")
                 msg.setIcon(msg.Critical)
