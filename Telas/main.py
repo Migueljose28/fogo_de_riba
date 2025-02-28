@@ -45,6 +45,7 @@ class Main(QMainWindow):
             #logout
             self.ui.pushButton_fechar.clicked.connect(self.login)
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Main()

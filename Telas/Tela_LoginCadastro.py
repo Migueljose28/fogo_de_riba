@@ -315,6 +315,8 @@ class Ui_TelaLoginCadastro(object):
                 msg.exec()
             else:
                 return True
+            cursor.close()
+            con.close()
 
 
 
