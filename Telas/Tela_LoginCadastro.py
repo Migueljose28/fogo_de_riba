@@ -240,15 +240,16 @@ class Ui_TelaLoginCadastro(object):
     def cad_usuarios(self):
         con = db.connect("usuarios.db")
         cursor = con.cursor()
-        nome = self.lineEdit_cadastro_usuario.text()
-        email = self.lineEdit_cadastro_email.text()
-        telefone = self.lineEdit_cadastro_telefone.text()
-        senha = self.lineEdit_cadastro_senha.text()
+        nome = self.lineEdit_cadastro_usuario.text().strip().lower()
+        email = self.lineEdit_cadastro_email.text().strip().lower()
+        telefone = self.lineEdit_cadastro_telefone.text().strip().lower()
+        senha = self.lineEdit_cadastro_senha.text().strip().lower()
 
         if nome == "" or email == "" or telefone == "" or senha == "":
             msg = QMessageBox()
+            msg.setIcon(msg.Warning)
             msg.setWindowTitle("Aviso")
-            msg.setText("O CADASTRO POSSUI CAMPO(S) VAZIO(S)!")
+            msg.setText("TODOS OS CAMPOS SÃO OBRIGATÓRIOS!")
             msg.exec_()
 
         else:
@@ -257,8 +258,9 @@ class Ui_TelaLoginCadastro(object):
             con.commit()
 
             msg = QMessageBox()
+            msg.setIcon(msg.Information)
             msg.setWindowTitle("Aviso")
-            msg.setText("CADASTRADO COM SUCESSO!")
+            msg.setText("CADASTRO REALIZADO COM SUCESSO!")
             msg.exec_()
 
             self.limpar()
@@ -271,6 +273,38 @@ class Ui_TelaLoginCadastro(object):
         self.lineEdit_cadastro_email.setText("")
         self.self.lineEdit_cadastro_telefone.setText("")
         self.lineEdit_cadastro_senha.setText("")
+
+
+
+    def logar(self):
+        usuario = self.lineEdit_login_usuario.text().strip().lower()
+        senha = self.lineEdit_login_senha.text().strip().lower()
+
+        if usuario == "" or senha == "":
+            msg = QMessageBox()
+            msg.setIcon(msg.Warning)
+            msg.setWindowTitle("Aviso")
+            msg.setText("TODOS OS CAMPOS SÃO OBRIGATÓRIOS!")
+            msg.exec()
+
+        else:
+            con = db.connect("usuarios.db")
+            cursor = con.cursor()
+            cursor.execute("SELECT * FROM usuarios WHERE nome = usuario and senha == senha")
+            if cursor.rowcount == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle("Erro")
+                msg.setIcon(msg.Critical)
+                msg.setText("Usuário ou senha inválida!")
+                msg.exec()
+            else:
+                TelaLoginCadastro.hide()
+                self.janela = QtWidgets.QMainWindow()
+                self.calc = Ui_TelaPrincipal()
+                self.calc.setupUi(self.janela)
+                self.janela.show()
+
+
 
     criardb()
 
