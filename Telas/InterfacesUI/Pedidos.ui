@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
-    <height>410</height>
+    <width>790</width>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>790</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>790</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -34,11 +46,11 @@ color: rgb(0, 0, 0);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;Restaurante Fogo de Riba&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_cliente">
+   <widget class="QLabel" name="label_nome">
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>120</y>
+      <y>185</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -59,7 +71,7 @@ border-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>125</y>
+      <y>190</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -68,11 +80,11 @@ border-color: rgb(0, 0, 0);</string>
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_pedido">
+   <widget class="QLabel" name="label_produto">
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>160</y>
+      <y>225</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -93,7 +105,7 @@ border-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>165</y>
+      <y>230</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -107,11 +119,11 @@ border-color: rgb(0, 0, 0);</string>
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_observacao">
+   <widget class="QLabel" name="label_pedidos">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>210</y>
+      <x>170</x>
+      <y>275</y>
       <width>231</width>
       <height>31</height>
      </rect>
@@ -128,12 +140,12 @@ border-color: rgb(0, 0, 0);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Pedidos adicionados:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_observacao">
+   <widget class="QTextEdit" name="textEdit_listaPedidos">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>250</y>
-      <width>345</width>
+      <x>130</x>
+      <y>315</y>
+      <width>301</width>
       <height>105</height>
      </rect>
     </property>
@@ -148,11 +160,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_concluir">
+   <widget class="QPushButton" name="pushButton_addCarrinho">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>256</y>
+      <x>470</x>
+      <y>315</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -168,11 +180,11 @@ border-radius: 10px;
      <string>Adicionar ao carrinho</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_cancelar">
+   <widget class="QPushButton" name="pushButton_finalizarPedido">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>293</y>
+      <x>470</x>
+      <y>355</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -188,11 +200,11 @@ border-radius: 10px;
      <string>Finalizar pedido</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_retornar">
+   <widget class="QPushButton" name="pushButton_limparCarrinho">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>330</y>
+      <x>470</x>
+      <y>395</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -212,7 +224,7 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>165</y>
+      <y>230</y>
       <width>133</width>
       <height>20</height>
      </rect>
@@ -221,11 +233,11 @@ border-radius: 10px;
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_quantidade">
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>160</y>
+      <y>225</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -242,11 +254,11 @@ border-color: rgb(0, 0, 0);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Quantidade:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="label_telefone">
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>120</y>
+      <y>185</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -267,112 +279,65 @@ border-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>125</y>
+      <y>190</y>
       <width>133</width>
       <height>20</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="label_wallpaper">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>-30</y>
-      <width>801</width>
+      <x>20</x>
+      <y>40</y>
+      <width>721</width>
       <height>471</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/newPrefix/360_F_452075464_qcFXNOsDafAtnezS5iAfPPxrusr3spwO.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Imagens/fundoPedidos.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QPushButton" name="pushButton_voltar">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>380</y>
-      <width>801</width>
+      <x>10</x>
+      <y>460</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font: 10pt &quot;Ravie&quot;;
+border-radius: 10px;
+</string>
     </property>
     <property name="text">
-     <string/>
+     <string>voltar</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>-10</y>
-      <width>801</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>10</y>
-      <width>71</width>
-      <height>371</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>20</y>
-      <width>71</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <zorder>label_3</zorder>
+   <zorder>label_wallpaper</zorder>
    <zorder>label_titulo</zorder>
-   <zorder>label_cliente</zorder>
+   <zorder>label_nome</zorder>
    <zorder>lineEdit_cliente</zorder>
-   <zorder>label_pedido</zorder>
+   <zorder>label_produto</zorder>
    <zorder>comboBox_pedido</zorder>
-   <zorder>label_observacao</zorder>
-   <zorder>textEdit_observacao</zorder>
-   <zorder>pushButton_concluir</zorder>
-   <zorder>pushButton_cancelar</zorder>
-   <zorder>pushButton_retornar</zorder>
+   <zorder>label_pedidos</zorder>
+   <zorder>textEdit_listaPedidos</zorder>
+   <zorder>pushButton_addCarrinho</zorder>
+   <zorder>pushButton_finalizarPedido</zorder>
+   <zorder>pushButton_limparCarrinho</zorder>
    <zorder>spinBox_quantidade</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
+   <zorder>label_quantidade</zorder>
+   <zorder>label_telefone</zorder>
    <zorder>lineEdit</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_6</zorder>
-   <zorder>label_7</zorder>
+   <zorder>pushButton_voltar</zorder>
   </widget>
  </widget>
  <resources>
-  <include location="Imagens/pictures.qrc"/>
+  <include location="pictures.qrc"/>
  </resources>
  <connections/>
 </ui>
