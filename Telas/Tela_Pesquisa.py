@@ -25,6 +25,7 @@ class Ui_TelaPesquisa(object):
         self.pushButton_pesquisar.setStyleSheet("color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);")
         self.pushButton_pesquisar.setObjectName("pushButton_pesquisar")
+        self.pushButton_pesquisar.clicked.connect(self.pesquisar_ingrediente)
         self.comboBox_filtrar = QtWidgets.QComboBox(self.frame)
         self.comboBox_filtrar.setGeometry(QtCore.QRect(220, 40, 149, 23))
         self.comboBox_filtrar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -37,6 +38,8 @@ class Ui_TelaPesquisa(object):
         self.comboBox_filtrar.addItem("")
         self.comboBox_filtrar.addItem("")
         self.comboBox_filtrar.addItem("")
+        #Pegando os dados por filtro
+        #self.comboBox_filtrar.clicked.connect(self.filtrar)
         self.plainTextEdit_exibirCardapio = QtWidgets.QPlainTextEdit(self.frame)
         self.plainTextEdit_exibirCardapio.setGeometry(QtCore.QRect(10, 70, 451, 401))
         self.plainTextEdit_exibirCardapio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -119,6 +122,8 @@ class Ui_TelaPesquisa(object):
         self.comboBox_filtrar.setItemText(5, _translate("MainWindow", "Bebidas"))
         self.comboBox_filtrar.setItemText(6, _translate("MainWindow", "Doces e Sobremesas"))
         self.label_cardapio.setText(_translate("MainWindow", "PESQUISE POR COMIDAS OU INGREDIENTE PREDILETOS"))
+        
+
 
         self.pushButton_fazer_pedido.setText(_translate("MainWindow", "FAZER PEDIDO"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:20pt;\">_CARDÁPIO_</span></p></body></html>"))
@@ -127,8 +132,6 @@ class Ui_TelaPesquisa(object):
         self.pushButton_cardapiocompleto.setText(_translate("MainWindow", "cardápio completo"))
 
 
-
-    
 
     def criar_banco(self):
         conn = db.connect("cardapio.db")
@@ -145,50 +148,62 @@ class Ui_TelaPesquisa(object):
         conn.commit()
         conn.close()
 
-    def inserir_prato(self):
-        conn = db.connect("cardapio.db")
-        cursor = conn.cursor()
-        #cursor.execute('''INSERT INTO pratos VALUES (null, "prato tropical", "cuscuz com leite")''')
-        conn.commit()
-        conn.close()
-
 
     def mostrar_cardapio(self):
         conn = db.connect("cardapio.db")
         cursor = conn.cursor()
-        cursor.execute('''SELECT * FROM pratos''').fetchone
+        cursor.execute('''SELECT * FROM pratos ''').fetchone
         
-        if cursor.rowcount == 0:
-                self.plainTextEdit_exibirCardapio.setPlainText("NENHUM RESULTADO ENCONTRADO.")
-        else:
-                dados = cursor.fetchall()
-                
-                texto = ""
-                
-                for linha in dados:
-                        texto += "Prato: " + str(linha[0]) + "\n"
-                        texto += "Nome: "   + linha[1] + "\n"
-                        texto += "descrição: "  + linha[2] + "\n"
-                        texto += "------------------------------\n"
-                        
-                texto += str(cursor.rowcount) + " resultados encontrados."
-                
-                self.plainTextEdit_exibirCardapio.setPlainText(texto)
+        dados = cursor.fetchall()
+        texto = ""
+        row = 0
+
+        for linha in dados:
+                texto += "Categoria: " + str(linha[1]) + "\n"
+                texto += "Nome: "   + linha[2] + "\n"
+                texto += "descrição: "  + linha[3] + "\n"
+                texto += "------------------------------\n"
+                row += 1
+        #Operador ternario
+        obs = (" resultado encontrado."  if cursor.rowcount == 1 else " resultados encontrados.")
+        texto += str(row) + obs
+
+        self.plainTextEdit_exibirCardapio.setPlainText(texto)
                 
                 
     def pesquisar_ingrediente(self):
+          conn = db.connect("cardapio.db")
+          cursor = conn.cursor()
+          descrição = self.lineEdit.text()
+
+          cursor.execute('''
+    SELECT * FROM pratos WHERE nome LIKE ? or descrição LIKE ?
+''', ('%' + descrição + '%', '%' + descrição + '%',)).fetchone  # Adicionando '%' no parâmetro
+          dados = cursor.fetchall()
+          texto = ""
+          row = 0
+
+          for linha in dados:
+                texto += "Categoria: " + str(linha[1]) + "\n"
+                texto += "Nome: "   + linha[2] + "\n"
+                texto += "descrição: "  + linha[3] + "\n"
+                texto += "------------------------------\n"
+                row += 1
+        #Operador ternario
+          obs = (" resultado encontrado."  if cursor.rowcount == 1 else " resultados encontrados.")
+          texto += str(row) + obs
+
+          self.plainTextEdit_exibirCardapio.setPlainText(texto)
+                
+          print(descrição)
+          conn.commit()
+          conn.close()
+
+
+    def filtrar(self):
          conn = db.connect("cardapio.db")
          cursor = conn.cursor()
-         descrição = self.lineEdit.text()
 
-         cursor.execute(''' 
-                SELECT * FROM pratos where nome LIKE ?
-                ''', {'%'+descrição+'%'})
-         
-         conn.commit()
-         conn.close()
-
-    
 
 if __name__ == "__main__":
     import sys
