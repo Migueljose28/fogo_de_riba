@@ -14,7 +14,7 @@ class Ui_MainWindow(object):
         self.label_wallpaper = QtWidgets.QLabel(self.centralwidget)
         self.label_wallpaper.setGeometry(QtCore.QRect(-40, -90, 1121, 721))
         self.label_wallpaper.setText("")
-        self.label_wallpaper.setPixmap(QtGui.QPixmap("/Telas/Imagens/Cordel.jpg"))
+        self.label_wallpaper.setPixmap(QtGui.QPixmap("Telas/Imagens/Cordel.jpg"))
         self.label_wallpaper.setObjectName("label_wallpaper")
         self.label_imagem_alisson = QtWidgets.QLabel(self.centralwidget)
         self.label_imagem_alisson.setGeometry(QtCore.QRect(50, 220, 201, 221))
@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
 "border-width: 5px;\n"
 "border-color: rgb(0, 0, 0);")
         self.label_imagem_alisson.setText("")
-        self.label_imagem_alisson.setPixmap(QtGui.QPixmap("/tmp/UPLOADS/Alisson Jonas_oficial.jpg"))
+        self.label_imagem_alisson.setPixmap(QtGui.QPixmap("Telas/Imagens/Alisson Jonas_oficial.jpg"))
         self.label_imagem_alisson.setObjectName("label_imagem_alisson")
         self.label_imagem_ednaldo = QtWidgets.QLabel(self.centralwidget)
         self.label_imagem_ednaldo.setGeometry(QtCore.QRect(300, 220, 201, 221))
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
 "border-width: 5px;\n"
 "border-color: rgb(0, 0, 0);")
         self.label_imagem_ednaldo.setText("")
-        self.label_imagem_ednaldo.setPixmap(QtGui.QPixmap("/tmp/UPLOADS/Jose Ednaldo_oficial.jpg"))
+        self.label_imagem_ednaldo.setPixmap(QtGui.QPixmap("Telas/Imagens/Jose Ednaldo_oficial.jpg"))
         self.label_imagem_ednaldo.setObjectName("label_imagem_ednaldo")
         self.label_imagem_miguel = QtWidgets.QLabel(self.centralwidget)
         self.label_imagem_miguel.setGeometry(QtCore.QRect(550, 220, 201, 221))
@@ -44,7 +44,7 @@ class Ui_MainWindow(object):
 "border-width: 5px;\n"
 "border-color: rgb(0, 0, 0);")
         self.label_imagem_miguel.setText("")
-        self.label_imagem_miguel.setPixmap(QtGui.QPixmap("/tmp/UPLOADS/Miguel José_oficial.jpg"))
+        self.label_imagem_miguel.setPixmap(QtGui.QPixmap("Telas/Imagens/Miguel José_oficial.jpg"))
         self.label_imagem_miguel.setObjectName("label_imagem_miguel")
         self.label_imagem_rafael = QtWidgets.QLabel(self.centralwidget)
         self.label_imagem_rafael.setGeometry(QtCore.QRect(800, 220, 201, 221))
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
 "border-width: 5px;\n"
 "border-color: rgb(0, 0, 0);")
         self.label_imagem_rafael.setText("")
-        self.label_imagem_rafael.setPixmap(QtGui.QPixmap("/tmp/UPLOADS/Alex Rafael_oficial.jpg"))
+        self.label_imagem_rafael.setPixmap(QtGui.QPixmap("Telas/Imagens/Alex Rafael_oficial.jpg"))
         self.label_imagem_rafael.setObjectName("label_imagem_rafael")
         self.label_nome_alisson = QtWidgets.QLabel(self.centralwidget)
         self.label_nome_alisson.setGeometry(QtCore.QRect(65, 450, 171, 41))
@@ -96,6 +96,8 @@ class Ui_MainWindow(object):
         self.pushButton_retornar.setGeometry(QtCore.QRect(30, 572, 171, 41))
         self.pushButton_retornar.setStyleSheet("font: 16pt \"MS Shell Dlg 2\";")
         self.pushButton_retornar.setObjectName("pushButton_retornar")
+        self.pushButton_retornar.setStyleSheet("font: 12pt \"MS Shell Dlg 2\";\n"
+"background-color: rgb(255, 255, 255);")
         self.label_descricao = QtWidgets.QLabel(self.centralwidget)
         self.label_descricao.setGeometry(QtCore.QRect(50, 20, 971, 161))
         self.label_descricao.setStyleSheet("color: rgb(0, 0, 0);\n"
@@ -112,12 +114,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Sobre"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "FOGO DE RIBA - DESENVOLVEDORES"))
         self.label_nome_alisson.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Alisson Jonas</span></p></body></html>"))
         self.label_nome_ednaldo.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Jose Ednaldo</span></p></body></html>"))
         self.label_nome_miguel.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Miguel José</span></p></body></html>"))
         self.label_nome_rafael.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Alex Rafael</span></p></body></html>"))
-        self.pushButton_retornar.setText(_translate("MainWindow", "Retornar"))
+        self.pushButton_retornar.setText(_translate("MainWindow", "RETORNAR"))
         self.label_descricao.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; font-style:italic;\">O restaurante Fogo de Riba é um projeto desenvolvido por alunos do 3° Ano do curso técnico integrado </span></p><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; font-style:italic;\">em informática no âmbito da disciplina de Programação com Acesso a Banco de Dados com o objetivo principal </span></p><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; font-style:italic;\">de aprimorar os conhecimentos adquiridos no decorrer da disciplina, além de obter uma excelente nota na matéria.</span></p></body></html>"))
 
 
