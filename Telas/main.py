@@ -4,6 +4,7 @@ from Tela_LoginCadastro import Ui_TelaLoginCadastro as login_cadastro
 from Tela_Principal import Ui_TelaPrincipal as principal
 from Tela_Pesquisa import Ui_TelaPesquisa as pesquisa
 from Tela_Pedidos import Ui_TelaPedidos as pedidos
+from Tela_Sobre import Ui_TelaSobre as sobre
 
 class Main(QMainWindow):
     def __init__(self):
@@ -12,13 +13,15 @@ class Main(QMainWindow):
         self.principal = principal()
         self.pesquisa = pesquisa()
         self.pedidos = pedidos()
+        self.sobre = sobre()
         self.login()
+
     def login(self): 
         self.ui = self.login_cadastro  # Começa na login_cadastro
         self.ui.setupUi(self)
         self.ui.pushButton_login_logar.clicked.connect(self.verificar)
 
-#Graças a Deus
+    #Graças a Deus
     def verificar(self):
             teste = self.login_cadastro.logar()
             if teste:
@@ -44,7 +47,12 @@ class Main(QMainWindow):
             self.ui.pushButton_pedidos.clicked.connect(self.mudar_para_telaPedidos)
             #logout
             self.ui.pushButton_fechar.clicked.connect(self.login)
+            self.ui.pushButton_sobre.clicked.connect(self.mudar_para_telasobre)
 
+    def mudar_para_telasobre(self):
+            self.ui = self.sobre # Muda para sobre
+            self.ui.setupUi(self)
+            self.ui.pushButton_retornar.clicked.connect(self.mudar_para_telaprincipal)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
