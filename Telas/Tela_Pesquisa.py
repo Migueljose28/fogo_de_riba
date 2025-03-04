@@ -39,7 +39,9 @@ class Ui_TelaPesquisa(object):
         self.comboBox_filtrar.addItem("")
         self.comboBox_filtrar.addItem("")
         #Pegando os dados por filtro
-        #self.comboBox_filtrar.clicked.connect(self.filtrar)
+        self.comboBox_filtrar.currentIndexChanged.connect(self.filtrar)
+       
+       
         self.plainTextEdit_exibirCardapio = QtWidgets.QPlainTextEdit(self.frame)
         self.plainTextEdit_exibirCardapio.setGeometry(QtCore.QRect(10, 70, 451, 401))
         self.plainTextEdit_exibirCardapio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -149,27 +151,32 @@ class Ui_TelaPesquisa(object):
         conn.close()
 
 
+
+    def function_normal(self, cursor):
+        dados = cursor.fetchall()
+        texto = ""
+        row = 0
+        lists = ["Categoria: ","Nome: ","descrição: "]
+
+        for linha in dados:
+           i = 1
+           for list in lists:
+                texto += list + str(linha[i]) + "\n"
+                i+=1
+           texto += "------------------------------\n"
+           row += 1
+        #Operador ternario para o plural
+        obs = (" resultado encontrado."  if cursor.rowcount == 1 else " resultados encontrados.")
+        texto += str(row) + obs
+        self.plainTextEdit_exibirCardapio.setPlainText(texto)
+
+
     def mostrar_cardapio(self):
         conn = db.connect("cardapio.db")
         cursor = conn.cursor()
         cursor.execute('''SELECT * FROM pratos ''').fetchone
+        self.function_normal(cursor)
         
-        dados = cursor.fetchall()
-        texto = ""
-        row = 0
-
-        for linha in dados:
-                texto += "Categoria: " + str(linha[1]) + "\n"
-                texto += "Nome: "   + linha[2] + "\n"
-                texto += "descrição: "  + linha[3] + "\n"
-                texto += "------------------------------\n"
-                row += 1
-        #Operador ternario
-        obs = (" resultado encontrado."  if cursor.rowcount == 1 else " resultados encontrados.")
-        texto += str(row) + obs
-
-        self.plainTextEdit_exibirCardapio.setPlainText(texto)
-                
                 
     def pesquisar_ingrediente(self):
           conn = db.connect("cardapio.db")
@@ -177,23 +184,9 @@ class Ui_TelaPesquisa(object):
           descrição = self.lineEdit.text()
 
           cursor.execute('''
-    SELECT * FROM pratos WHERE nome LIKE ? or descrição LIKE ?
-''', ('%' + descrição + '%', '%' + descrição + '%',)).fetchone  # Adicionando '%' no parâmetro
-          dados = cursor.fetchall()
-          texto = ""
-          row = 0
-
-          for linha in dados:
-                texto += "Categoria: " + str(linha[1]) + "\n"
-                texto += "Nome: "   + linha[2] + "\n"
-                texto += "descrição: "  + linha[3] + "\n"
-                texto += "------------------------------\n"
-                row += 1
-        #Operador ternario
-          obs = (" resultado encontrado."  if cursor.rowcount == 1 else " resultados encontrados.")
-          texto += str(row) + obs
-
-          self.plainTextEdit_exibirCardapio.setPlainText(texto)
+          SELECT * FROM pratos WHERE nome LIKE ? or descrição LIKE ?
+          ''', ('%' + descrição + '%', '%' + descrição + '%',)).fetchone  # Adicionando '%' no parâmetro
+          self.function_normal(cursor)
                 
           print(descrição)
           conn.commit()
@@ -203,6 +196,13 @@ class Ui_TelaPesquisa(object):
     def filtrar(self):
          conn = db.connect("cardapio.db")
          cursor = conn.cursor()
+         texto_selecionado = self.comboBox_filtrar.currentText()
+
+
+         cursor.execute('''
+         SELECT * FROM pratos WHERE categoria LIKE ?
+         ''', ('%' +  texto_selecionado + '%',)).fetchone  # Adicionando '%' no parâmetro
+         self.function_normal(cursor)
 
 
 if __name__ == "__main__":

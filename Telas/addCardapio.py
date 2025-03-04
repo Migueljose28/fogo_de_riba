@@ -13,13 +13,13 @@ class AddBanco:
                     descrição TEXT NOT NULL     
             )
                     ''')
-    def adiciona_prato(self):
+  
             conn = db.connect("cardapio.db")
             cursor = conn.cursor()
             categoria = input("degite a categoria: ")
             nome = input("digite o nome do prato novo: ")
             descrição = input("digite a descrição do prato: ")
-            cmd = "INSERT INTO pratos VALUES (null,?, ?,?)"
+            cmd = "INSERT INTO pratos VALUES (null,?,?,?)"
            
             cursor.execute(cmd,(categoria, nome, descrição))
 
@@ -44,4 +44,4 @@ class AddBanco:
 if __name__ == "__main__":
     banco = AddBanco()
     #banco.deletar_tabela()
-    banco.adiciona_prato()
+    banco()
