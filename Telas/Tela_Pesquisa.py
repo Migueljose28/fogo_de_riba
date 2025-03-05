@@ -117,12 +117,10 @@ class Ui_TelaPesquisa(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "FOGO DE RIBA - PESQUISA"))
         self.pushButton_pesquisar.setText(_translate("MainWindow", "Pesquisar"))
         self.comboBox_filtrar.setItemText(0, _translate("MainWindow", "Filtrar"))
-        self.comboBox_filtrar.setItemText(1, _translate("MainWindow", "Pratos Típicos"))
-        self.comboBox_filtrar.setItemText(2, _translate("MainWindow", "Carnes"))
-        self.comboBox_filtrar.setItemText(3, _translate("MainWindow", "Sopas e Caldos"))
-        self.comboBox_filtrar.setItemText(4, _translate("MainWindow", "Acompanhamentos"))
-        self.comboBox_filtrar.setItemText(5, _translate("MainWindow", "Bebidas"))
-        self.comboBox_filtrar.setItemText(6, _translate("MainWindow", "Doces e Sobremesas"))
+        self.comboBox_filtrar.setItemText(1, _translate("MainWindow", "Pratos principais"))
+        self.comboBox_filtrar.setItemText(2, _translate("MainWindow", "Entradas"))
+        self.comboBox_filtrar.setItemText(3, _translate("MainWindow", "Sobremesas"))
+        self.comboBox_filtrar.setItemText(4, _translate("MainWindow", "Bebidas"))
         self.label_cardapio.setText(_translate("MainWindow", "PESQUISE POR COMIDAS OU INGREDIENTE PREDILETOS"))
         
 
@@ -156,7 +154,7 @@ class Ui_TelaPesquisa(object):
         dados = cursor.fetchall()
         texto = ""
         row = 0
-        lists = ["Categoria: ","Nome: ","descrição: "]
+        lists = ["CATEGORIA: ","NOME: ","DESCRIÇÃO: "]
 
         for linha in dados:
            i = 1

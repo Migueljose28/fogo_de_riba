@@ -48,9 +48,23 @@ class Ui_TelaPedidos(object):
         self.comboBox_pedido.setObjectName("comboBox_pedido")
         
         self.comboBox_pedido.addItem("")
-        self.comboBox_pedido.addItem("nome1")
-        self.comboBox_pedido.addItem("nome2")
-        self.comboBox_pedido.addItem("nome3")
+        self.comboBox_pedido.addItem("Carne de sol")
+        self.comboBox_pedido.addItem("Guiné cozido")
+        self.comboBox_pedido.addItem("Buxada de bode")
+        self.comboBox_pedido.addItem("Peixe frito")
+        self.comboBox_pedido.addItem("Cuscuz recheado")
+        self.comboBox_pedido.addItem("Mandioca frita")
+        self.comboBox_pedido.addItem("Dadinho de tapioca")
+        self.comboBox_pedido.addItem("Quebra queixo")
+        self.comboBox_pedido.addItem("Doce de mamão com coco")
+        self.comboBox_pedido.addItem("Rapadura")
+        self.comboBox_pedido.addItem("Água mineral")
+        self.comboBox_pedido.addItem("Pitu")
+        self.comboBox_pedido.addItem("Suco de goiaba")
+        self.comboBox_pedido.addItem("Suco de tamarindo")
+        self.comboBox_pedido.addItem("Suco de acerola")
+        self.comboBox_pedido.addItem("Suco de cajarana")
+
 
         self.label_pedidos = QtWidgets.QLabel(self.centralwidget)
         self.label_pedidos.setGeometry(QtCore.QRect(300, 200, 231, 31))
@@ -220,14 +234,38 @@ class Ui_TelaPedidos(object):
                 msg.setWindowTitle("Aviso")
                 msg.setText("SELECIONE ALGUM PRODUTO!")
                 msg.exec_()
-            elif produto == "nome1":
-                valor = 1 * quantidade
-            elif produto == "nome2":
-                valor = 2 * quantidade
-            elif produto == "nome3":
+            elif produto == "Carne de sol":
+                valor = 130 * quantidade
+            elif produto == "Guiné cozido":
+                valor = 100 * quantidade
+            elif produto == "Buxada de bode":
+                valor = 140 * quantidade
+            elif produto == "Peixe frito":
+                valor = 110 * quantidade
+            elif produto == "Cuscuz recheado":
+                valor = 40 * quantidade
+            elif produto == "Mandioca frita":
+                valor = 15 * quantidade
+            elif produto == "Dadinho de tapioca":
+                valor = 25 * quantidade
+            elif produto == "Quebra queixo":
+                valor = 15 * quantidade
+            elif produto == "Doce de mamão com coco":
+                valor = 12 * quantidade
+            elif produto == "Rapadura":
+                valor = 10 * quantidade
+            elif produto == "Água mineral":
                 valor = 3 * quantidade
-            elif produto == "nome4":
-                valor = 4 * quantidade
+            elif produto == "Pitu":
+                valor = 9 * quantidade
+            elif produto == "Suco de goiaba":
+                valor = 7 * quantidade
+            elif produto == "Suco de acerola":
+                valor = 7 * quantidade
+            elif produto == "Suco de cajarana":
+                valor = 7 * quantidade
+            elif produto == "Suco de tamarindo":
+                valor = 7 * quantidade
         
 
             if valor != 0:
@@ -275,6 +313,29 @@ class Ui_TelaPedidos(object):
         # Fechar a conexão
         con.close()
 
+    def deletar_tabela(self):
+            conn = db.connect("cardapio.db")
+            cursor = conn.cursor()
+            cursor.execute("DROP TABLE pedidos")
+
+            conn.commit()
+            cursor.close()
+            conn.close()
+
+    def criar_tabela(self):
+            con = db.connect("cardapio.db")
+            cursor = con.cursor()
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS pedidos(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            cliente TEXT NOT NULL,
+            telefone TEXT NOT NULL,
+            produtos TEXT NOT NULL,
+            valor INTEGER     
+        )
+            ''')
+            con.commit()
+            con.close()
 
 if __name__ == "__main__":
     import sys

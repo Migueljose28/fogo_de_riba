@@ -40,6 +40,8 @@ class AddBanco:
             conn.commit()
             cursor.close()
             conn.close()
+        
+    
 
 if __name__ == "__main__":
     banco = AddBanco()
